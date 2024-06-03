@@ -1,0 +1,195 @@
+body{
+    background-image: url(../img/background.jpeg);
+    font-family: 'Lato';
+}
+.container{
+    max-width: 1350px;
+    margin: 0 auto;
+}
+#app {
+    background-color: var(--pokedex-color);
+    border: 7px double black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+    justify-content: center;
+    gap: 150px;
+
+    #pokemonInfo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 2px solid #b31818;
+        padding: 5px;
+    }
+
+    #pokemonName {
+        background: var(--bg-color);
+        width: fit-content;
+        padding: 10px;
+        border-radius: 3px;
+        border: var(--borde);
+        max-width: 400px;
+    }
+    
+    #pokemonImages {
+        background-image: url(../img/pokemon-back.png);
+        background-position: bottom;
+        width: fit-content;
+        text-align: center;
+        border: var(--borde);
+        
+        >img {
+            display: inline-block;
+            width: 250px;
+        }
+    }
+
+    #shinyButton {
+        border-radius: 5px;
+        border: none;
+        padding: 5px;
+        background-color: #f0cd44;
+        border: 3px solid transparent;
+        transition: border-color 0.3s ease;
+        &:hover{
+            cursor: pointer;
+            border: 3px solid hsl(47, 68%, 75%);
+        }
+    }
+    
+    #description {
+        background: var(--bg-color);
+        width: fit-content;
+        padding: 1px 10px;
+        border: var(--borde);
+    }
+    
+    #flipButton{
+        .flip{
+            width: 20px;
+        }
+    }
+    
+    .details{
+        border: 2px solid #b31818;
+        padding: 5px;
+        width: 300px;
+    }
+
+    h1::first-letter{
+        text-transform: uppercase;
+    }
+    #hpProgress {
+        background-color: #FF0000;
+    }
+    
+    #attackProgress {
+        background-color: #FFA500;
+    }
+    
+    #defenseProgress {
+        background-color: #FFFF00;
+    }
+    
+    #specialAttackProgress {
+        background-color: #0000FF;
+    }
+    
+    #specialDefenseProgress {
+        background-color: #008000;
+    }
+    
+    #speedProgress {
+        background-color: #FF69B4;
+    }
+    
+    
+    .progress-title{
+            font-size: 18px;
+            font-weight: 700;
+            color: #1c2647;
+            margin: 0 0 10px;
+        }
+        .progress{
+            height: 20px;
+            background: #ffffff56;
+            border-top: 5px solid #1c2647;
+            border-bottom: 5px solid #1c2647;
+            border-radius: 0;
+            margin-bottom: 25px;
+            overflow: visible;
+            position: relative;
+        }
+        .progress:before,
+        .progress:after{
+            content: "";
+            width: 5px;
+            background: #1c2647;
+            position: absolute;
+            top: 0;
+            left: -5px;
+            bottom: 0;
+        }
+        .progress:after{
+            left: auto;
+            right: -5px;
+        }
+        .progress .progress-bar{
+            border: none;
+            box-shadow: none;
+            -webkit-animation: 2s linear 0s normal none infinite running progress-bar-stripes,animate-positive 1s;
+            animation: 2s linear 0s normal none infinite running progress-bar-stripes,animate-positive 1s;
+        }
+        @-webkit-keyframes animate-positive{
+            0%{ width: 0; }
+        }
+        @keyframes animate-positive{
+            0%{ width: 0; }
+        }
+        .progress-bar {
+            float: left;
+            width: 0;
+            height: 100%;
+            font-size: 12px;
+            line-height: 20px;
+            color: #fff;
+            text-align: center;
+            background-color: #337ab7;
+            -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+            box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+            -webkit-transition: width .6s ease;
+            -o-transition: width .6s ease;
+            transition: width .6s ease;
+        }
+}
+.forms{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+@media(min-width:768px){
+    #app{
+        flex-direction: row;
+        gap: 20px;
+        
+
+        #description{
+            max-width: 400px;
+        }
+    }
+}
+
+@media(min-width:1024px){
+    #app{
+        max-width: 1300px;
+        height: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 50px;
+    }
+}   

@@ -1,0 +1,45 @@
+.menu {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.menu>div{
+    display: flex;
+    margin-left: auto;
+}
+.menu li>a{
+    background-color:  #595c6e;
+    padding: 10px 20px;
+    color: white;
+}
+.teams {
+    border-top: #ffc000 0.3em solid;
+}
+
+.login, .logout {
+    border-top: #00a53c 0.3em solid;
+}
+
+.signup {
+    border-top: #9600b4 0.3em solid;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li a {
+    text-decoration: none;
+}
+
+.name{
+    background-color: var(--pokedex-color);
+    color: white;
+    padding: 10px 20px;
+}
