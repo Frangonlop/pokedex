@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+$archivo = "../../config/config.php";
+if (!file_exists($archivo)) {
+    header("Location: ../../install/install_view1.php");
+}
+
 include '../../config/config.php';
 
 // Verificar si el usuario está logueado
@@ -52,34 +58,38 @@ $conn->close();
     <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-    <nav>
-        <li><a href="../../index.php">Inicio</a></li>
-        <?php if (isset($_SESSION['login'])): ?>
-            <li><?php echo htmlspecialchars($_SESSION['login']); ?></li>
-            <li><a href="../model/logout.php">Cerrar sesión</a></li>
+    <div class="container">
+        <nav>
+            <ul class="menu">
+                <li><a href="../../index.php" class="teams">Inicio</a></li>
+                <?php if (isset($_SESSION['login'])): ?>
+                    <li><a class="name signup"><?php echo htmlspecialchars($_SESSION['login']); ?></a></li>
+                    <li><a href="../model/logout.php" class="logout">Cerrar sesión</a></li>
+                <?php else: ?>
+                    <li><a href="login.php?redirect=teams.php">Iniciar sesión</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+        <h1>Mis Equipos</h1>
+        
+        <?php if (empty($equipos)): ?>
+            <p>No tienes equipos creados. <a href="create_team.php">Crear un equipo</a></p>
         <?php else: ?>
-            <li><a href="login.php?redirect=teams.php">Iniciar sesión</a></li>
-        <?php endif; ?>
-    </nav>
-    <h1>Mis Equipos</h1>
-    
-    <?php if (empty($equipos)): ?>
-        <p>No tienes equipos creados. <a href="create_team.php">Crear un equipo</a></p>
-    <?php else: ?>
-        <ul>
-            <?php foreach ($equipos as $equipo): ?>
-                <li>
-                    <h2><?php echo htmlspecialchars($equipo['nombre_equipo']); ?></h2>
-                    <p>Fecha de creación: <?php echo htmlspecialchars($equipo['fecha_creacion']); ?></p>
-                    <a href="ver_equipo.php?id=<?php echo $equipo['id']; ?>">Ver equipo</a>
-                    <form action="../model/delete_team.php" method="post" style="display:inline;">
-                        <input type="hidden" name="equipo_id" value="<?php echo $equipo['id']; ?>">
-                        <button type="submit">Eliminar</button>
-                    </form>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-        <p><a href="create_team.php">Crear un nuevo equipo</a></p>
+            <ul>
+                <?php foreach ($equipos as $equipo): ?>
+                    <li>
+                        <h2><?php echo htmlspecialchars($equipo['nombre_equipo']); ?></h2>
+                        <p>Fecha de creación: <?php echo htmlspecialchars($equipo['fecha_creacion']); ?></p>
+                        <a href="ver_equipo.php?id=<?php echo $equipo['id']; ?>">Ver equipo</a>
+                        <form action="../model/delete_team.php" method="post" style="display:inline;">
+                            <input type="hidden" name="equipo_id" value="<?php echo $equipo['id']; ?>">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <p><a href="create_team.php">Crear un nuevo equipo</a></p>
     <?php endif; ?>
+    </div>
 </body>
 </html>

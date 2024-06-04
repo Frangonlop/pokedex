@@ -1,5 +1,6 @@
 :root{
     --bg-color: linear-gradient(45deg, rgba(230,255,119,1) 0%, rgba(239,255,190,1) 78%, rgba(255,255,255,1) 100%);
     --borde: 3px solid #879a65;
-    --pokedex-color: #e61515
+    --pokedex-color: #e61515;
+    --form-color: #595c6e;
 }

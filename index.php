@@ -34,13 +34,13 @@ $conexion = new mysqli($HOST, $NAME, $PASSWORD, $BD, $PORT);
                     <?php if (isset($_SESSION['login'])): ?>
                         <li><a class="name signup">Bienvenido, <?php echo htmlspecialchars($_SESSION['login']); ?></a></li>
                         <li><a href="./resources/model/logout.php" class="logout">Cerrar sesión</a></li>
-                        <?php else: ?>
-                            <li><a href="./resources/views/register.php" class="signup">Registrarse</a></li>
-                            <li><a href="./resources/views/login.php" class="login">Iniciar sesión</a></li>
-                            <?php endif; ?>
-                        </div>
-                    </ul>
-                </nav>
+                    <?php else: ?>
+                        <li><a href="./resources/views/register.php" class="signup">Registrarse</a></li>
+                        <li><a href="./resources/views/login.php" class="login">Iniciar sesión</a></li>
+                    <?php endif; ?>
+                </div>
+            </ul>
+        </nav>
                 <div id="app">
                     <div id="pokemonInfo">
                         <h1 id="pokemonName">Busca un Pokémon</h1>

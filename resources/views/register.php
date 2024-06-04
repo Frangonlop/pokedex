@@ -1,3 +1,9 @@
+<?php
+$archivo = "../../config/config.php";
+if (!file_exists($archivo)) {
+    header("Location: ../../install/install_view1.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
