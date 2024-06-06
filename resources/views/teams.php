@@ -83,7 +83,7 @@ $conn->close();
                         <a href="ver_equipo.php?id=<?php echo $equipo['id']; ?>">Ver equipo</a>
                         <form action="../model/delete_team.php" method="post" style="display:inline;">
                             <input type="hidden" name="equipo_id" value="<?php echo $equipo['id']; ?>">
-                            <button type="submit">Eliminar</button>
+                            <button type="submit" class="del-btn">Eliminar</button>
                         </form>
                     </li>
                 <?php endforeach; ?>
