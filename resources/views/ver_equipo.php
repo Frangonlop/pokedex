@@ -4,6 +4,7 @@ session_start();
 $archivo = "../../config/config.php";
 if (!file_exists($archivo)) {
     header("Location: ../../install/install_view1.php");
+    exit();
 }
 
 include '../../config/config.php';
@@ -54,29 +55,30 @@ if (!$nombre_equipo) {
 }
 
 // Obtener los Pokémon del equipo
-$stmt = $conn->prepare("SELECT pokemon_id FROM equipo_pokemon WHERE equipo_id = ?");
+$stmt = $conn->prepare("SELECT nombre_pokemon FROM equipo_pokemon WHERE equipo_id = ?");
 $stmt->bind_param("i", $equipo_id);
 $stmt->execute();
-$stmt->bind_result($pokemon_id);
+$stmt->bind_result($nombre_pokemon);
 $pokemons = [];
 while ($stmt->fetch()) {
-    $pokemons[] = $pokemon_id;
+    $pokemons[] = $nombre_pokemon;
 }
 $stmt->close();
-
-// Obtener los detalles de cada Pokémon
-$pokemon_details = [];
-foreach ($pokemons as $id) {
-    $stmt = $conn->prepare("SELECT nombre, tipo FROM pokemons WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $stmt->bind_result($nombre, $tipo);
-    $stmt->fetch();
-    $pokemon_details[] = ['nombre' => $nombre, 'tipo' => $tipo];
-    $stmt->close();
-}
-
 $conn->close();
+
+// Obtener los detalles de cada Pokémon usando la PokeAPI
+$pokemon_details = [];
+foreach ($pokemons as $nombre_pokemon) {
+    $url = "https://pokeapi.co/api/v2/pokemon/" . strtolower($nombre_pokemon);
+    $pokemon_data = json_decode(file_get_contents($url), true);
+    if ($pokemon_data) {
+        $pokemon_details[] = [
+            'nombre' => $pokemon_data['name'],
+            'tipo' => $pokemon_data['types'][0]['type']['name'],
+            'imagen' => $pokemon_data['sprites']['front_default']
+        ];
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -109,7 +111,10 @@ $conn->close();
     <?php else: ?>
         <ul>
             <?php foreach ($pokemon_details as $pokemon): ?>
-                <li><?php echo htmlspecialchars($pokemon['nombre']); ?> - <?php echo htmlspecialchars($pokemon['tipo']); ?></li>
+                <li>
+                    <img src="<?php echo htmlspecialchars($pokemon['imagen']); ?>" alt="<?php echo htmlspecialchars($pokemon['nombre']); ?>">
+                    <?php echo htmlspecialchars($pokemon['nombre']); ?> - <?php echo htmlspecialchars($pokemon['tipo']); ?>
+                </li>
             <?php endforeach; ?>
         </ul>
     <?php endif; ?>

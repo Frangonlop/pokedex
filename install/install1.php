@@ -45,11 +45,14 @@ $crearEquipos = "CREATE TABLE IF NOT EXISTS `equipos` (
 $crearEquipoPokemon = "CREATE TABLE IF NOT EXISTS `equipo_pokemon` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `equipo_id` INT,
-    `pokemon_id` INT,
+    `nombre_pokemon` VARCHAR(255) NOT NULL,
     FOREIGN KEY (`equipo_id`) REFERENCES `equipos`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Tabla de equipo_pokemon';";
 
-if ($conexion->query($crearUsuarios) === TRUE && $conexion->query($crearEquipos) === TRUE && $conexion->query($crearEquipoPokemon) === TRUE){
+
+if ($conexion->query($crearUsuarios) === TRUE && 
+    $conexion->query($crearEquipos) === TRUE && 
+    $conexion->query($crearEquipoPokemon) === TRUE) {
     header("Location: ../index.php");
     exit;
 } else {
