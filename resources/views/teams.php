@@ -55,19 +55,22 @@ $conn->close();
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <script src="../js/popup.js"></script>
 </head>
 <body>
     <div class="container">
         <nav>
             <ul class="menu">
                 <li><a href="../../index.php" class="teams">Inicio</a></li>
-                <?php if (isset($_SESSION['login'])): ?>
-                    <li><a class="name signup"><?php echo htmlspecialchars($_SESSION['login']); ?></a></li>
-                    <li><a href="../model/logout.php" class="logout">Cerrar sesión</a></li>
-                <?php else: ?>
-                    <li><a href="login.php?redirect=teams.php">Iniciar sesión</a></li>
-                <?php endif; ?>
+                <div>
+                    <?php if (isset($_SESSION['login'])): ?>
+                        <li><a class="name signup"><?php echo htmlspecialchars($_SESSION['login']); ?></a></li>
+                        <li><a href="../model/logout.php" class="logout">Cerrar sesión</a></li>
+                    <?php else: ?>
+                        <li><a href="login.php?redirect=teams.php">Iniciar sesión</a></li>
+                    <?php endif; ?>
+                </div>
             </ul>
         </nav>
         <h1>Mis Equipos</h1>
@@ -81,7 +84,7 @@ $conn->close();
                         <h2><?php echo htmlspecialchars($equipo['nombre_equipo']); ?></h2>
                         <p>Fecha de creación: <?php echo htmlspecialchars($equipo['fecha_creacion']); ?></p>
                         <a href="ver_equipo.php?id=<?php echo $equipo['id']; ?>">Ver equipo</a>
-                        <form action="../model/delete_team.php" method="post" style="display:inline;">
+                        <form action="../model/delete_team.php" method="post" style="display:inline;" onsubmit="confirmDelete(event)">
                             <input type="hidden" name="equipo_id" value="<?php echo $equipo['id']; ?>">
                             <button type="submit" class="del-btn">Eliminar</button>
                         </form>
@@ -89,7 +92,7 @@ $conn->close();
                 <?php endforeach; ?>
             </ul>
             <p><a href="create_team.php">Crear un nuevo equipo</a></p>
-    <?php endif; ?>
+        <?php endif; ?>
     </div>
 </body>
 </html>

@@ -108,15 +108,17 @@ foreach ($pokemons as $nombre_pokemon) {
         <nav>
             <ul class="menu">
                 <li><a href="../../index.php" class="teams">Inicio</a></li>
-                <?php if (isset($_SESSION['login'])): ?>
-                    <li><a class="name signup"><?php echo htmlspecialchars($_SESSION['login']); ?></a></li>
-                    <li><a href="../model/logout.php" class="logout">Cerrar sesión</a></li>
-                <?php else: ?>
-                    <li><a href="login.php?redirect=teams.php">Iniciar sesión</a></li>
-                <?php endif; ?>
+                <li><a href="teams.php" class="return">Volver a mis equipos</a></li>
+                <div>
+                    <?php if (isset($_SESSION['login'])): ?>
+                        <li><a class="name signup"><?php echo htmlspecialchars($_SESSION['login']); ?></a></li>
+                        <li><a href="../model/logout.php" class="logout">Cerrar sesión</a></li>
+                    <?php else: ?>
+                        <li><a href="login.php?redirect=teams.php">Iniciar sesión</a></li>
+                    <?php endif; ?>
+                </div>
             </ul>
         </nav>
-        <p><a href="teams.php">Volver a mis equipos</a></p>
         <h1>Detalles del Equipo</h1>
         <h2><?php echo htmlspecialchars($nombre_equipo); ?></h2>
         <p>Fecha de creación: <?php echo htmlspecialchars($fecha_creacion); ?></p>

@@ -27,6 +27,11 @@
     border-top: #9600b4 0.3em solid;
 }
 
+.return {
+    border-top: #ff3333 0.3em solid;
+}
+
+
 
 ul {
     list-style-type: none;

@@ -25,10 +25,13 @@ if (!file_exists($archivo)) {
         <nav>
             <ul class="menu">
                 <li><a href="../../index.php" class="teams">Inicio</a></li>
-                <?php if (isset($_SESSION['login'])): ?>
-                    <li><a class="signup"><?php echo htmlspecialchars($_SESSION['login']); ?></a></li>
-                    <li><a href="../model/logout.php" class="logout">Cerrar sesión</a></li>
-                <?php endif; ?>
+                <li><a href="teams.php" class="return">Volver a mis equipos</a></li>
+                <div>
+                    <?php if (isset($_SESSION['login'])): ?>
+                        <li><a class="signup"><?php echo htmlspecialchars($_SESSION['login']); ?></a></li>
+                        <li><a href="../model/logout.php" class="logout">Cerrar sesión</a></li>
+                    <?php endif; ?>
+                </div>
             </ul>
         </nav>
         <h1>Crear Equipo</h1>
