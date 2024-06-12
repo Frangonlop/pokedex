@@ -73,26 +73,29 @@ $conn->close();
                 </div>
             </ul>
         </nav>
-        <h1>Mis Equipos</h1>
-        
-        <?php if (empty($equipos)): ?>
-            <p>No tienes equipos creados. <a href="create_team.php">Crear un equipo</a></p>
-        <?php else: ?>
-            <ul>
-                <?php foreach ($equipos as $equipo): ?>
-                    <li>
-                        <h2><?php echo htmlspecialchars($equipo['nombre_equipo']); ?></h2>
-                        <p>Fecha de creación: <?php echo htmlspecialchars($equipo['fecha_creacion']); ?></p>
-                        <a href="ver_equipo.php?id=<?php echo $equipo['id']; ?>">Ver equipo</a>
-                        <form action="../model/delete_team.php" method="post" style="display:inline;" onsubmit="confirmDelete(event)">
-                            <input type="hidden" name="equipo_id" value="<?php echo $equipo['id']; ?>">
-                            <button type="submit" class="del-btn">Eliminar</button>
-                        </form>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-            <p><a href="create_team.php">Crear un nuevo equipo</a></p>
-        <?php endif; ?>
+        <div class="equipos">
+            <h1>Mis Equipos</h1>
+            <div>
+                    <?php if (empty($equipos)): ?>
+                        <p>No tienes equipos creados. <a href="create_team.php">Crear un equipo</a></p>
+                    <?php else: ?>
+                        <ul>
+                            <?php foreach ($equipos as $equipo): ?>
+                                <li>
+                                    <h2><?php echo htmlspecialchars($equipo['nombre_equipo']); ?></h2>
+                                    <p>Fecha de creación: <?php echo htmlspecialchars($equipo['fecha_creacion']); ?></p>
+                                    <a href="ver_equipo.php?id=<?php echo $equipo['id']; ?>" class="view">Ver equipo</a>
+                                    <form action="../model/delete_team.php" method="post" style="display:inline;" onsubmit="confirmDelete(event)">
+                                        <input type="hidden" name="equipo_id" value="<?php echo $equipo['id']; ?>">
+                                        <button type="submit" class="del-btn">Eliminar</button>
+                                    </form>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <?php endif; ?>
+                        </div>
+            <p class="create"><a href="create_team.php">Crear un nuevo equipo</a></p>
+        </div>
     </div>
 </body>
 </html>

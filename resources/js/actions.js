@@ -1,7 +1,7 @@
 import { searchPokemonByName } from "./api.js";
 
 export async function getDefaultPokemon() {
-    const defaultPokemonName = "bulbasaur"; // Cambiar el nombre del Pokémon por defecto si es necesario
+    const defaultPokemonName = "bulbasaur"; // Nombre del pokemon por defecto
     return await searchPokemonByName(defaultPokemonName);
 }
 
@@ -14,19 +14,19 @@ export async function toggleShiny(pokemonName) {
     if (imageElement.getAttribute('src') === pokemon.sprites.front_default) {
         imageElement.setAttribute('src', pokemon.sprites.front_shiny);
         backImageElement.setAttribute('src', pokemon.sprites.back_shiny);
-        document.getElementById("shinyButton").textContent = "Versión normal"; // Cambiar texto del botón
+        document.getElementById("shinyButton").textContent = "Versión normal";
     } else if (imageElement.getAttribute('src') === pokemon.sprites.front_shiny) {
         imageElement.setAttribute('src', pokemon.sprites.front_default);
         backImageElement.setAttribute('src', pokemon.sprites.back_default);
-        document.getElementById("shinyButton").textContent = "Versión shiny"; // Cambiar texto del botón
+        document.getElementById("shinyButton").textContent = "Versión shiny";
     } else if (imageElement.getAttribute('src') === pokemon.sprites.back_default) {
         imageElement.setAttribute('src', pokemon.sprites.back_shiny);
         backImageElement.setAttribute('src', pokemon.sprites.front_shiny);
-        document.getElementById("shinyButton").textContent = "Versión normal"; // Cambiar texto del botón
+        document.getElementById("shinyButton").textContent = "Versión normal";
     } else {
         imageElement.setAttribute('src', pokemon.sprites.back_default);
         backImageElement.setAttribute('src', pokemon.sprites.front_default);
-        document.getElementById("shinyButton").textContent = "Versión shiny"; // Cambiar texto del botón
+        document.getElementById("shinyButton").textContent = "Versión shiny";
     }
 }
 
