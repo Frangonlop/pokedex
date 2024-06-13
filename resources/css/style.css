@@ -6,6 +6,14 @@ body{
     max-width: 1350px;
     margin: 0 auto;
 }
+#pokemonInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #b31818;
+    padding: 5px;
+}
+
 #app {
     background-color: var(--pokedex-color);
     border: 7px double black;
@@ -16,14 +24,6 @@ body{
     padding: 10px 20px;
     justify-content: center;
     gap: 150px;
-
-    #pokemonInfo{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border: 2px solid #b31818;
-        padding: 5px;
-    }
 
     #pokemonName {
         background: var(--bg-color);
@@ -191,5 +191,11 @@ body{
         margin-left: auto;
         margin-right: auto;
         gap: 50px;
+    }
+    #stats{
+        padding: 20px;
+    }
+    #pokemonInfo{
+        padding: 20px;
     }
 }   

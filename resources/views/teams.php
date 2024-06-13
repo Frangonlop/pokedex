@@ -75,7 +75,7 @@ $conn->close();
         </nav>
         <div class="equipos">
             <h1>Mis Equipos</h1>
-            <div>
+            <div class="equipos_order">
                     <?php if (empty($equipos)): ?>
                         <p>No tienes equipos creados. <a href="create_team.php">Crear un equipo</a></p>
                     <?php else: ?>

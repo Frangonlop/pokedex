@@ -119,23 +119,27 @@ foreach ($pokemons as $nombre_pokemon) {
                 </div>
             </ul>
         </nav>
-        <h1>Detalles del Equipo</h1>
-        <h2><?php echo htmlspecialchars($nombre_equipo); ?></h2>
-        <p>Fecha de creación: <?php echo htmlspecialchars($fecha_creacion); ?></p>
-        
-        <h3>Pokémon en el equipo</h3>
-        <?php if (empty($pokemon_details)): ?>
-            <p>No hay Pokémon en este equipo.</p>
-        <?php else: ?>
-            <ul>
-                <?php foreach ($pokemon_details as $pokemon): ?>
-                    <li>
-                        <img src="<?php echo htmlspecialchars($pokemon['imagen']); ?>" alt="<?php echo htmlspecialchars($pokemon['nombre']); ?>">
-                        <?php echo htmlspecialchars($pokemon['nombre']); ?> - <?php echo htmlspecialchars($pokemon['tipo']); ?>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        <?php endif; ?>
+        <div class="equipos">
+            <h1>Detalles del Equipo</h1>
+            <h2><?php echo htmlspecialchars($nombre_equipo); ?></h2>
+            <p>Fecha de creación: <?php echo htmlspecialchars($fecha_creacion); ?></p>
+            
+            <div class="teams">
+            <h3>Pokémon en el equipo</h3>
+                <?php if (empty($pokemon_details)): ?>
+                    <p>No hay Pokémon en este equipo.</p>
+                <?php else: ?>
+                    <ul class="pokemones">
+                        <?php foreach ($pokemon_details as $pokemon): ?>
+                            <li>
+                                <img src="<?php echo htmlspecialchars($pokemon['imagen']); ?>" alt="<?php echo htmlspecialchars($pokemon['nombre']); ?>">
+                                <?php echo htmlspecialchars($pokemon['nombre']); ?> - <?php echo htmlspecialchars($pokemon['tipo']); ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </div>
+        </div>
     </div>
 </body>
 </html>

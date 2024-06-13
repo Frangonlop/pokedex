@@ -1,0 +1,12 @@
+.pokemones{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.pokemones>li{
+    display: flex;
+    align-items: center;
+}
+.teams{
+    margin-top: 30px;
+    margin-left: 0;
+}

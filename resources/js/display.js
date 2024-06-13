@@ -1,4 +1,24 @@
-import { searchPokemonByName } from "./api.js";
+import { searchPokemonByName, getTypeInSpanish } from "./api.js";
+
+const typeColorMapping = {
+    "agua": "var(--water-color)",
+    "bicho": "var(--bug-color)",
+    "fuego": "var(--fire-color)",
+    "veneno": "var(--poison-color)",
+    "planta": "var(--grass-color)",
+    "normal": "var(--normal-color)",
+    "eléctrico": "var(--electric-color)",
+    "tierra": "var(--sand-color)",
+    "hada": "var(--fairy-color)",
+    "lucha": "var(--fight-color)",
+    "psíquico": "var(--phisyc-color)",
+    "hielo": "var(--ice-color)",
+    "oscuro": "var(--dark-color)",
+    "dragón": "var(--dragon-color)",
+    "roca": "var(--rock-color)",
+    "fantasma": "var(--ghost-color)",
+    "acero": "var(--steel-color)"
+};
 
 export async function displayPokemon(pokemonName) {
     const descriptionDiv = document.getElementById("description");
@@ -42,8 +62,14 @@ export async function displayPokemon(pokemonName) {
         weightItem.textContent = `Peso: ${weightInKg} kg`;
         detailsList.appendChild(weightItem);
 
+        // Obtener tipos en español y mostrar
         const typesItem = document.createElement("li");
-        typesItem.textContent = `Tipos: ${pokemon.types.map(type => type.type.name).join(", ")}`;
+        const typeNamesInSpanish = await Promise.all(pokemon.types.map(async type => {
+            const typeNameInSpanish = await getTypeInSpanish(type.type.url);
+            const color = typeColorMapping[typeNameInSpanish] || "var(--normal-color)";
+            return `<span style="background-color: ${color}; color: ${isColorDark(color) ? 'white' : 'black'}; padding: 2px 6px; border-radius: 4px;">${typeNameInSpanish}</span>`;
+        }));
+        typesItem.innerHTML = `Tipos: ${typeNamesInSpanish.join(", ")}`;
         detailsList.appendChild(typesItem);
 
         // Mostrar stats
@@ -92,4 +118,17 @@ export async function displayPokemon(pokemonName) {
         pokemonNameElement.textContent = "No se encontró ningún Pokémon con ese nombre.";
         statsContainer.style.display = "none";
     }
+}
+
+// Función para determinar si el color es oscuro
+function isColorDark(color) {
+    const hex = color.replace('var(', '').replace(')', '').split('-')[1];
+    if (!hex) return false;
+    const c = hex.replace('#', '');
+    const rgb = parseInt(c, 16); 
+    const r = (rgb >> 16) & 0xff;
+    const g = (rgb >>  8) & 0xff;
+    const b = (rgb >>  0) & 0xff;
+    const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // formula for luminance
+    return luma < 128;
 }

@@ -22,7 +22,6 @@ document.getElementById("flipButton").addEventListener("click", async () => {
     }
 });
 
-
 let typingTimer;
 const doneTypingInterval = 1000; // Intervalo de espera después de dejar de escribir (en milisegundos)
 
@@ -30,7 +29,7 @@ document.getElementById("searchInput").addEventListener("input", async (event) =
     const searchInput = event.target.value.trim().toLowerCase();
 
     clearTimeout(typingTimer);
-    if (searchInput || searchInput === "") { // Incluimos esta condición para que se llame a displayPokemon incluso cuando el campo de búsqueda esté vacío
+    if (searchInput || searchInput === "") {
         typingTimer = setTimeout(async () => {
             try {
                 await displayPokemon(searchInput);

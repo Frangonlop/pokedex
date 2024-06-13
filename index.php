@@ -41,75 +41,75 @@ $conexion = new mysqli($HOST, $NAME, $PASSWORD, $BD, $PORT);
                 </div>
             </ul>
         </nav>
-                <div id="app">
-                    <div id="pokemonInfo">
-                        <h1 id="pokemonName">Busca un Pokémon</h1>
-                        <div id="pokemonImages">
-                            <img id="pokemonFrontImage" src="" alt="Imagen del Pokémon">
-                            <img id="pokemonBackImage" src="" alt="Imagen posterior del Pokémon" style="display: none;">
-                        </div>
-                        <div class="forms">
-                            <button id="shinyButton">Versión shiny</button>
-                            <button id="flipButton"><img class="flip" src="resources/img/actualizar.svg" alt="Dar la vuelta"></button>
-                        </div>
-                        <input type="text" id="searchInput" placeholder="Buscar Pokémon por nombre">
-                        <div id="description"></div>
-                    </div>
-                    <div class="details">
-                        <ul id="detailsList">
-                            <!-- Aquí se mostrarán los detalles -->
-                        </ul>
-                        
-                        <div id="stats">
-                            <div class="stat-item">
-                                <span class="progress-title">HP</span>
-                                <span id="hpValue">0</span>
-                                <div class="progress">
-                                    <div class="progress-bar" id="hpProgress"></div>
-                                </div>
-                            </div>
-                            <div class="stat-item">
-                                <span class="progress-title">Attack</span>
-                                <span id="attackValue">0</span>
-                                <div class="progress">
-                                    <div class="progress-bar" id="attackProgress"></div>
-                                </div>
-                            </div>
-                            <div class="stat-item">
-                                <span class="progress-title">Defense</span>
-                                <span id="defenseValue">0</span>
-                                <div class="progress">
-                                    <div class="progress-bar" id="defenseProgress"></div>
-                                </div>
-                            </div>
-                            <div class="stat-item">
-                                <span class="progress-title">Special Attack</span>
-                                <span id="specialAttackValue">0</span>
-                                <div class="progress">
-                                    <div class="progress-bar" id="specialAttackProgress"></div>
-                                </div>
-                            </div>
-                            <div class="stat-item">
-                                <span class="progress-title">Special Defense</span>
-                                <span id="specialDefenseValue">0</span>
-                                <div class="progress">
-                        <div class="progress-bar" id="specialDefenseProgress"></div>
-                    </div>
+        <div id="app">
+            <div id="pokemonInfo">
+                <h1 id="pokemonName">Busca un Pokémon</h1>
+                <div id="pokemonImages">
+                    <img id="pokemonFrontImage" src="" alt="Imagen del Pokémon">
+                    <img id="pokemonBackImage" src="" alt="Imagen posterior del Pokémon" style="display: none;">
                 </div>
-                <div class="stat-item">
-                    <span class="progress-title">Speed</span>
-                    <span id="speedValue">0</span>
-                    <div class="progress">
-                        <div class="progress-bar" id="speedProgress"></div>
+                <div class="forms">
+                    <button id="shinyButton">Versión shiny</button>
+                    <button id="flipButton"><img class="flip" src="resources/img/actualizar.svg"
+                            alt="Dar la vuelta"></button>
+                </div>
+                <input type="text" id="searchInput" placeholder="Buscar Pokémon por nombre">
+                <div id="description"></div>
+            </div>
+            <div class="details">
+                <div id="stats">
+                    <div class="stat-item">
+                        <span class="progress-title">HP</span>
+                        <span id="hpValue">0</span>
+                        <div class="progress">
+                            <div class="progress-bar" id="hpProgress"></div>
+                        </div>
                     </div>
+                    <div class="stat-item">
+                        <span class="progress-title">Attack</span>
+                        <span id="attackValue">0</span>
+                        <div class="progress">
+                            <div class="progress-bar" id="attackProgress"></div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="progress-title">Defense</span>
+                        <span id="defenseValue">0</span>
+                        <div class="progress">
+                            <div class="progress-bar" id="defenseProgress"></div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="progress-title">Special Attack</span>
+                        <span id="specialAttackValue">0</span>
+                        <div class="progress">
+                            <div class="progress-bar" id="specialAttackProgress"></div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="progress-title">Special Defense</span>
+                        <span id="specialDefenseValue">0</span>
+                        <div class="progress">
+                            <div class="progress-bar" id="specialDefenseProgress"></div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="progress-title">Speed</span>
+                        <span id="speedValue">0</span>
+                        <div class="progress">
+                            <div class="progress-bar" id="speedProgress"></div>
+                        </div>
+                    </div>
+                    <ul id="detailsList">
+                        <!-- Aquí se mostrarán los detalles -->
+                    </ul>
                 </div>
             </div>
+
         </div>
-        
     </div>
-</div>
-</div>
-<script type="module" src="resources/js/main.js"></script>
+    </div>
+    <script type="module" src="resources/js/main.js"></script>
 </body>
 
 </html>
