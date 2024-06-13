@@ -17,7 +17,8 @@ const typeColorMapping = {
     "dragón": "var(--dragon-color)",
     "roca": "var(--rock-color)",
     "fantasma": "var(--ghost-color)",
-    "acero": "var(--steel-color)"
+    "acero": "var(--steel-color)",
+    "volador": "var(--fly-color)"
 };
 
 export async function displayPokemon(pokemonName) {
@@ -64,12 +65,13 @@ export async function displayPokemon(pokemonName) {
 
         // Obtener tipos en español y mostrar
         const typesItem = document.createElement("li");
-        const typeNamesInSpanish = await Promise.all(pokemon.types.map(async type => {
+        const typeNamesInSpanish = await Promise.all(pokemon.types.map(async (type, index) => {
             const typeNameInSpanish = await getTypeInSpanish(type.type.url);
             const color = typeColorMapping[typeNameInSpanish] || "var(--normal-color)";
-            return `<span style="background-color: ${color}; color: ${isColorDark(color) ? 'white' : 'black'}; padding: 2px 6px; border-radius: 4px;">${typeNameInSpanish}</span>`;
+            const marginRight = index < pokemon.types.length - 1 ? "5px" : "0";
+            return `<span class="type-span" style="${getBackgroundStyle(color)} color: ${isColorDark(color) ? 'white' : 'black'}; padding: 2px 6px; border-radius: 4px; margin-right: ${marginRight};">${typeNameInSpanish}</span>`;
         }));
-        typesItem.innerHTML = `Tipos: ${typeNamesInSpanish.join(", ")}`;
+        typesItem.innerHTML = `Tipos: ${typeNamesInSpanish.join("")}`;
         detailsList.appendChild(typesItem);
 
         // Mostrar stats
@@ -122,13 +124,31 @@ export async function displayPokemon(pokemonName) {
 
 // Función para determinar si el color es oscuro
 function isColorDark(color) {
-    const hex = color.replace('var(', '').replace(')', '').split('-')[1];
-    if (!hex) return false;
-    const c = hex.replace('#', '');
-    const rgb = parseInt(c, 16); 
-    const r = (rgb >> 16) & 0xff;
-    const g = (rgb >>  8) & 0xff;
-    const b = (rgb >>  0) & 0xff;
-    const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // formula for luminance
-    return luma < 128;
+    // Para colores CSS variables
+    if (color.startsWith('var')) {
+        const cssColor = getComputedStyle(document.documentElement).getPropertyValue(color.replace('var(', '').replace(')', '')).trim();
+        return isColorDark(cssColor);
+    }
+
+    // Para colores hexadecimales
+    if (color.startsWith('#')) {
+        const c = color.substring(1); // Strip '#'
+        const rgb = parseInt(c, 16); 
+        const r = (rgb >> 16) & 0xff;
+        const g = (rgb >>  8) & 0xff;
+        const b = (rgb >>  0) & 0xff;
+        const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // formula for luminance
+        return luma < 128;
+    }
+
+    // Asumir claro si no es reconocible
+    return false;
+}
+
+// Función para obtener el estilo de fondo
+function getBackgroundStyle(color) {
+    if (color.startsWith('var')) {
+        return `background: ${color};`;
+    }
+    return `background-color: ${color};`;
 }
