@@ -28,7 +28,6 @@ Para instalar y ejecutar Pokeverse en tu entorno local, necesitas tener lo sigui
    - En Ubuntu:
      ```bash
      sudo apt install mysql-server
-     sudo mysql_secure_installation
      ```
    - En Windows: MySQL viene incluido en WampServer o XAMPP.
 
@@ -57,7 +56,7 @@ FLUSH PRIVILEGES;
 
 1. Clonar el repositorio de Pokeverse en el directorio raíz de Apache:
    ```bash
-   git clone https://github.com/tu-usuario/pokeverse.git /var/www/html/pokeverse
+   git clone https://github.com/Frangonlop/pokedex.git /var/www/html/pokeverse
    ```
 2. Configurar el Virtual Host para Apache:
   ```bash
