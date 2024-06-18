@@ -77,7 +77,7 @@ $conn->close();
             <h1>Mis Equipos</h1>
             <div class="equipos_order">
                     <?php if (empty($equipos)): ?>
-                        <p>No tienes equipos creados. <a href="create_team.php">Crear un equipo</a></p>
+                        <p>No tienes equipos creados.</p>
                     <?php else: ?>
                         <ul>
                             <?php foreach ($equipos as $equipo): ?>
